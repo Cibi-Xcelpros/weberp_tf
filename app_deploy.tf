@@ -80,7 +80,8 @@ resource "null_resource" "copy-deploy-script" {
 resource "null_resource" "copy-env" {
   depends_on = [null_resource.copy-deploy-script]
   provisioner "file" {
-    source      = "./env/.env"                   
+    # source      = "./env/.env" 
+    content     = var.env_source_content
     destination = "/home/adminuser/web_erp/.env" 
     connection {
       type        = "ssh"
