@@ -66,3 +66,7 @@ variable "nginx_pem" {
   description = "Enter the nginx_pem to access the nginx hosing"
   type = string
 }
+variable "env_source_content" {
+  description = "Enter the sectrets for this project"
+  type = string
+}
