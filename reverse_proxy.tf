@@ -17,4 +17,7 @@ resource "null_resource" "execute-post-script" {
     }
   }
 }
-
+output "sucess_message" {
+  depends_on = [null_resource.execute-post-script]
+  value = "You can access the tenants ERP instance at ${var.sub_domain_name}.xcelpros.com"
+}
