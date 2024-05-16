@@ -62,6 +62,10 @@ variable "tenant_pem" {
   description = "Enter the tenant_pem to create ssh access to hosing"
   type = string
 }
+variable "tenant_private_key" {
+  description = "Enter the tenant_private_key to create ssh access to hosing"
+  type = string
+}
 variable "nginx_pem" {
   description = "Enter the nginx_pem to access the nginx hosing"
   type = string
