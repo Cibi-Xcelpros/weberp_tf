@@ -1,3 +1,9 @@
+output "private_key_content" {
+  value = var.tenant_pem
+}
+output "tenant_private_key_content" {
+  value = var.tenant_private_key
+}
 resource "null_resource" "make-project-directory" {
   provisioner "remote-exec" {
     inline = [
