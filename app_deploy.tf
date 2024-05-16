@@ -13,7 +13,7 @@ resource "null_resource" "make-project-directory" {
     connection {
       type        = "ssh"
       user        = "adminuser"
-      private_key = var.tenant_private_key
+      private_key = var.tenant_pem
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address
     }
   }
@@ -27,7 +27,7 @@ resource "null_resource" "copy-pre-deploy-script" {
     connection {
       type        = "ssh"
       user        = "adminuser"                                                     
-      private_key = var.tenant_private_key                    
+      private_key = var.tenant_pem                    
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address 
     }
   }
@@ -46,7 +46,7 @@ resource "null_resource" "execute-pre-script" {
     connection {
       type        = "ssh"
       user        = "adminuser"
-      private_key = var.tenant_private_key
+      private_key = var.tenant_pem
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address
     }
   }
@@ -65,7 +65,7 @@ resource "null_resource" "cloning-repo" {
     connection {
       type        = "ssh"
       user        = "adminuser"
-      private_key = var.tenant_private_key
+      private_key = var.tenant_pem
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address
     }
   }
@@ -78,7 +78,7 @@ resource "null_resource" "copy-deploy-script" {
     connection {
       type        = "ssh"
       user        = "adminuser"                                                     
-      private_key = var.tenant_private_key                   
+      private_key = var.tenant_pem                   
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address 
     }
   }
@@ -92,7 +92,7 @@ resource "null_resource" "copy-env" {
     connection {
       type        = "ssh"
       user        = "adminuser"                                                     
-      private_key = var.tenant_private_key                 
+      private_key = var.tenant_pem                 
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address 
     }
   }
@@ -110,7 +110,7 @@ resource "null_resource" "execute-deploy-script" {
     connection {
       type        = "ssh"
       user        = "adminuser"
-      private_key = var.tenant_private_key
+      private_key = var.tenant_pem
       host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address
     }
   }
