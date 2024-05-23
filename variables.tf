@@ -74,3 +74,15 @@ variable "env_source_content" {
   description = "Enter the sectrets for this project"
   type = string
 }
+variable "email_id_notification" {
+  description = "Enter the desired Email address to recive notification about new tenant launch"
+  type = string
+}
+variable "email_service_ip" {
+  description = "Enter the ip address of the email service"
+  type = string
+}
+variable "api_key" {
+  description = "Enter the api_key of the email service"
+  type = string
+}
