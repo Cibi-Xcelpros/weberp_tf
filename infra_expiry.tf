@@ -20,7 +20,7 @@ resource "null_resource" "set_infra_expiry" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/azureuser/web_erp/post-deploy.sh",
-      "echo './home/azureuser/web_erp/post-deploy.sh ${azurerm_resource_group.resource_group.name} ${var.sub_domain_name}' | at now + ${var.expiration_hours} hours"
+      "echo 'sh ./home/azureuser/web_erp/post-deploy.sh ${azurerm_resource_group.resource_group.name} ${var.sub_domain_name}' | at now + ${var.expiration_hours} hours"
     ]
 
     connection {
