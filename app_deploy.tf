@@ -26,9 +26,23 @@ resource "null_resource" "copy-pre-deploy-script" {
     }
   }
 }
+resource "null_resource" "copy-env" {
+  depends_on = [null_resource.copy-pre-deploy-script]
+  provisioner "file" {
+    # source      = "./env/.env" 
+    content     = var.env_source_content
+    destination = "/home/adminuser/web_erp/.env" 
+    connection {
+      type        = "ssh"
+      user        = "adminuser"                                                     
+      private_key = var.tenant_pem                 
+      host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address 
+    }
+  }
+}
 
 resource "null_resource" "execute-pre-script" {
-  depends_on = [null_resource.copy-pre-deploy-script]
+  depends_on = [null_resource.copy-env]
 
   provisioner "remote-exec" {
     inline = [
@@ -77,22 +91,9 @@ resource "null_resource" "copy-deploy-script" {
     }
   }
 }
-resource "null_resource" "copy-env" {
-  depends_on = [null_resource.copy-deploy-script]
-  provisioner "file" {
-    # source      = "./env/.env" 
-    content     = var.env_source_content
-    destination = "/home/adminuser/web_erp/.env" 
-    connection {
-      type        = "ssh"
-      user        = "adminuser"                                                     
-      private_key = var.tenant_pem                 
-      host        = azurerm_linux_virtual_machine.virtual_machine.public_ip_address 
-    }
-  }
-}
+
 resource "null_resource" "execute-deploy-script" {
-  depends_on = [null_resource.copy-env]
+  depends_on = [null_resource.copy-deploy-script]
 
   provisioner "remote-exec" {
     inline = [
