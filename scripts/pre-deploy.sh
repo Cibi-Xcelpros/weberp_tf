@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TENANT_NAME="$1"
+
 # Add Docker's official GPG key
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -25,3 +27,7 @@ cd ~
 curl -sL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
 sudo bash /tmp/nodesource_setup.sh
 sudo apt install nodejs -y
+
+# Export enviroment variables to system variables
+echo "\nAWS_BUCKET_NAME=weberp-${TENANT_NAME}" >> /home/adminuser/web_erp/.env
+sudo sh -c 'cat /home/adminuser/web_erp/.env >> /etc/environment'
