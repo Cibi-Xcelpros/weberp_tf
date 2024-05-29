@@ -16,5 +16,8 @@ npm run db:start
 echo "Preping the Database"
 npm run db:build
 
+echo "Building the application"
+npm run build
+
 sudo npm install pm2 -g
-pm2 --name WebERP start npm -- run dev
+pm2 --name WebERP start npm -- run start
