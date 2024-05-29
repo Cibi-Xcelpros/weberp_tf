@@ -48,7 +48,7 @@ resource "null_resource" "execute-pre-script" {
     inline = [
       "cd /home/adminuser/web_erp",
       "chmod +x pre-deploy.sh",
-      "sh pre-deploy.sh",
+      "sh pre-deploy.sh ${var.tenant_name}",
     ]
 
     connection {
